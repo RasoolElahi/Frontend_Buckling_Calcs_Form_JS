@@ -26,8 +26,7 @@ export default function App() {
   const [results, setResults] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [downloadUrl, setDownloadUrl] = useState("");
-  const [downloadFileName, setDownloadFileName] = useState("buckling_report.docx");
+
   const [mailtoLink, setMailtoLink] = useState("");
 
   const payload = {
@@ -102,7 +101,7 @@ export default function App() {
 
       const blob = await reportResponse.blob();
       const fileUrl = window.URL.createObjectURL(blob);
-      setDownloadUrl(fileUrl);
+    
 
       const contentDisposition = reportResponse.headers.get("Content-Disposition");
       let fileName = "buckling_report.docx";
@@ -111,7 +110,6 @@ export default function App() {
         fileName = contentDisposition.split("filename=")[1].replace(/"/g, "").trim();
       }
 
-      setDownloadFileName(fileName);
 
       const link = document.createElement("a");
       link.href = fileUrl;
