@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./App.css";
 
-const API_URL = "https://web-production-bdc56.up.railway.app";
+const API_URL = process.env.REACT_APP_API_URL;
+if (!API_URL) {
+  console.error("API URL is not defined!");
+}
 
 function fmt(value, decimals) {
   return Number(value).toFixed(decimals);
